@@ -141,7 +141,7 @@ bool GameLevel::init()
 		this->addChild( nuke);
 
 		CCActionInterval* blinkNuke = CCBlink::create(1.f, 1);
-		CCRepeatForever* rep2 = CCRepeatForever::actionWithAction( blinkNuke);
+		CCRepeatForever* rep2 = CCRepeatForever::create( blinkNuke);
 		nuke->runAction( rep2);
 
 
@@ -191,10 +191,10 @@ void GameLevel::Update(float dt)
 				// create a scene. it's an autorelease object
 				GameOverScene *gameOverScene = GameOverScene::create();
 
-				CCNode* node = CCNode::create();
-				CCActionInterval* effect = CCShaky3D::create(5, false, ccg(15,10), 0.8f);
-				node->runAction(effect);
-				addChild(node, 0);
+			//	CCNode* node = CCNode::create();
+			//	CCActionInterval* effect = CCShaky3D::create(5, false, 10, 0.8f);
+			//	node->runAction(effect);
+			//	addChild(node, 0);
 
 				mExitLevel = true;
 				CCDirector::sharedDirector()->replaceScene(CCTransitionProgressInOut::create(0.8f, gameOverScene) );

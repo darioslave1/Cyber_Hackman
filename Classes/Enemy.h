@@ -49,7 +49,8 @@ protected:
 	bool MoveToNextTile(float dt);
 	void ChangeDirection();
 	
-	cocos2d::CCArray randomPoints;
+	//cocos2d::CCArray randomPoints;
+	std::vector<cocos2d::CCPoint> randomPointsVec;
 
 	int tmpCounter;
 

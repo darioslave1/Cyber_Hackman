@@ -85,7 +85,7 @@ void GameLevelMap::InitLevel(int levelNum)
 	// Backdoor Animation
 	CCSprite *tile0 = mPwdChunksForeground->tileAt(ccp(5,5));
 	CCActionInterval* opacityIn = CCFadeIn::create(2.f);
-	CCRepeatForever* rep2 = CCRepeatForever::actionWithAction( opacityIn);
+	CCRepeatForever* rep2 = CCRepeatForever:: create( opacityIn);
 	tile0->runAction( rep2);
 
 }

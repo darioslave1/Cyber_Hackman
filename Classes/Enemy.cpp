@@ -16,7 +16,9 @@ Enemy::Enemy(int speed, long _id) : MovingEntity(speed, _id), mHasReachedTarget(
 
 Enemy::~Enemy(void)
 {
-	randomPoints.removeAllObjects();
+	randomPointsVec.clear();
+
+	//randomPoints.removeAllObjects();
 
 	if(m_pEnemyFSM)
 		delete m_pEnemyFSM;
@@ -24,10 +26,17 @@ Enemy::~Enemy(void)
 
 void Enemy::Init()
 {
+	/*
 	randomPoints.addObject( new CCPoint(2,2));
 	randomPoints.addObject( new CCPoint(22,12));
 	randomPoints.addObject( new CCPoint(22,2));
 	randomPoints.addObject( new CCPoint(2,13));
+	*/
+
+	randomPointsVec.push_back(CCPoint(2,2));
+	randomPointsVec.push_back(CCPoint(22,12));
+	randomPointsVec.push_back(CCPoint(22,2));
+	randomPointsVec.push_back(CCPoint(2,13));
 
 	this->mEntityTile = PathPlanner::GetInstance()->GetLevelMap()->tileCoordForPosition(this->GetSpritePosition());
 
@@ -68,8 +77,11 @@ void Enemy::RandomMovement()
 
 	CCTime::gettimeofdayCocos2d(&now, NULL);
 	srand(now.tv_sec);
-	int index = rand() % (int)randomPoints.count();
-	CCPoint destTileCoords = *(dynamic_cast<CCPoint*>(randomPoints.objectAtIndex(index)));	// in case of a tentative number of get a valid tile > 3
+
+	//int index = rand() % (int)randomPoints.count();
+	int index = rand() % randomPointsVec.size();
+	//CCPoint destTileCoords = *(dynamic_cast<CCPoint*>(randomPoints.objectAtIndex(index)));	// in case of a tentative number of get a valid tile > 3
+	CCPoint destTileCoords = randomPointsVec.at(index);	// in case of a tentative number of get a valid tile > 3
 
 	CCPoint tmpDestTile;
 	int counter = 0;
